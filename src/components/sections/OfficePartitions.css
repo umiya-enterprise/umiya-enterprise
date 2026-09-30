@@ -1,0 +1,185 @@
+.office__head {
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.office__bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+
+.office__cell {
+  min-width: 0;
+}
+
+.office__cell .image-tile {
+  min-height: 0;
+  aspect-ratio: 1;
+}
+
+.office__cell--1,
+.office__cell--6,
+.office__cell--cta {
+  grid-column: 1 / -1;
+}
+
+.office__cell--1 .image-tile {
+  aspect-ratio: 4 / 3;
+}
+
+.office__cell--6 .image-tile {
+  aspect-ratio: 16 / 9;
+}
+
+.office__cell--2 .image-tile__text,
+.office__cell--3 .image-tile__text,
+.office__cell--4 .image-tile__text,
+.office__cell--5 .image-tile__text {
+  display: none;
+}
+
+.office__cell--2 .image-tile__caption,
+.office__cell--3 .image-tile__caption,
+.office__cell--4 .image-tile__caption,
+.office__cell--5 .image-tile__caption {
+  padding: 0.9rem;
+}
+
+.office__cell--2 .image-tile__title,
+.office__cell--3 .image-tile__title,
+.office__cell--4 .image-tile__title,
+.office__cell--5 .image-tile__title {
+  font-size: 0.9375rem;
+}
+
+/* Planning CTA panel */
+.office__plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  height: 100%;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  color: rgba(255, 255, 255, 0.78);
+  background: var(--blue);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.office__plan::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -12%;
+  width: 55%;
+  height: 180%;
+  background: rgba(255, 255, 255, 0.05);
+  transform: skewX(-24deg);
+  pointer-events: none;
+}
+
+.office__plan::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 4px;
+  background: var(--red);
+}
+
+.office__plan-title {
+  position: relative;
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.office__plan p {
+  position: relative;
+  max-width: 32rem;
+}
+
+.office__plan-list {
+  position: relative;
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 0.5rem;
+}
+
+.office__plan-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.office__plan-list svg {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--metal-300);
+}
+
+.office__plan .btn {
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .office__bento {
+    gap: 1.25rem;
+  }
+
+  .office__cell--2 .image-tile__text,
+  .office__cell--3 .image-tile__text,
+  .office__cell--4 .image-tile__text,
+  .office__cell--5 .image-tile__text {
+    display: block;
+  }
+
+  .office__cell .image-tile {
+    aspect-ratio: 4 / 3;
+  }
+
+  .office__cell--1 .image-tile {
+    aspect-ratio: 16 / 10;
+  }
+
+  .office__cell--2 .image-tile__caption,
+  .office__cell--3 .image-tile__caption,
+  .office__cell--4 .image-tile__caption,
+  .office__cell--5 .image-tile__caption {
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .office__bento {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(250px, auto);
+  }
+
+  .office__cell .image-tile {
+    aspect-ratio: auto !important;
+    height: 100%;
+  }
+
+  .office__cell--1 {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+  }
+
+  .office__cell--6 {
+    grid-column: 1 / span 2;
+  }
+
+  .office__cell--cta {
+    grid-column: 3 / span 2;
+  }
+
+  .office__cell--1 .image-tile__title {
+    font-size: 1.375rem;
+  }
+}

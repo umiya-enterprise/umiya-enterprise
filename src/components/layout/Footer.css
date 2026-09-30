@@ -1,0 +1,157 @@
+.site-footer {
+  position: relative;
+  color: rgba(255, 255, 255, 0.66);
+  background: var(--night);
+  font-size: 0.9375rem;
+}
+
+.site-footer__edge {
+  height: 4px;
+  background: linear-gradient(90deg, var(--red) 0 33%, var(--blue) 33% 80%, var(--metal-300) 80% 100%);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.5rem 1rem;
+  padding-block: clamp(3.5rem, 6vw, 5rem) 2.5rem;
+}
+
+.site-footer__brand,
+.site-footer__contact {
+  grid-column: 1 / -1;
+}
+
+.site-footer__brand p {
+  max-width: 24rem;
+  margin-block: 1.25rem 1.5rem;
+  line-height: 1.7;
+}
+
+.site-footer__logo-link {
+  display: inline-block;
+  border-radius: var(--r-sm);
+}
+
+/* The logo was designed on black, so it sits directly on the near-black footer */
+.site-footer__logo {
+  height: 88px;
+  width: auto;
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.site-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--r-sm);
+  transition:
+    background-color var(--t) var(--ease),
+    border-color var(--t) var(--ease),
+    transform var(--t) var(--ease);
+}
+
+.site-footer__social a:hover {
+  background: var(--red-strong);
+  border-color: var(--red-strong);
+  transform: translateY(-2px);
+}
+
+.site-footer__title {
+  margin-bottom: 1.25rem;
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.site-footer__col ul {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.site-footer__col a {
+  position: relative;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.site-footer__col a:hover {
+  color: var(--white);
+}
+
+.site-footer__contact li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.site-footer__contact svg {
+  margin-top: 0.3rem;
+  color: var(--red);
+}
+
+.site-footer__contact address {
+  font-style: normal;
+}
+
+.site-footer__contact a,
+.site-footer__contact span,
+.site-footer__contact address {
+  overflow-wrap: anywhere;
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.5rem;
+  font-size: var(--fs-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Keeps the last lines clear of the floating WhatsApp / back-to-top buttons */
+@media (max-width: 1023.98px) {
+  .site-footer__bottom {
+    padding-bottom: 8.5rem;
+  }
+}
+
+.site-footer__tagline {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (min-width: 640px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+
+  .site-footer__contact {
+    grid-column: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__grid {
+    grid-template-columns: 1.5fr 0.8fr 1fr 1.3fr;
+    gap: 3rem;
+  }
+
+  .site-footer__brand {
+    grid-column: auto;
+  }
+}

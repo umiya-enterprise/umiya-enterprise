@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umiya Enterprises | Aluminium &amp; Glass Solutions</title>
+    <meta
+      name="description"
+      content="Umiya Enterprises – all types of glass &amp; aluminium work: windows, doors, partitions and custom solutions for home and commercial projects in Ahmedabad."
+    />
+    <meta name="theme-color" content="#39358B" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Umiya Enterprises | Aluminium &amp; Glass Solutions" />
+    <meta
+      property="og:description"
+      content="All types of glass &amp; aluminium work – windows, doors, partitions and custom solutions for home and commercial projects."
+    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+
+    <!-- Preloader styles are inlined so the loader paints before the app bundle arrives -->
+    <style>
+      html.is-loading,
+      html.is-loading body {
+        overflow: hidden;
+      }
+
+      #preloader {
+        --pl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --pl-slide: cubic-bezier(0.76, 0, 0.24, 1);
+        --pl-metal: linear-gradient(90deg, #9ca3af, #e5e7eb 45%, #9ca3af);
+        --pl-metal-v: linear-gradient(180deg, #9ca3af, #e5e7eb 45%, #9ca3af);
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        transition: visibility 0s linear 1.6s;
+      }
+
+      /* Two sliding panels that part like a sliding door on exit */
+      .preloader__panel {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50.5%;
+        background-color: #f3f4f6;
+        background-image:
+          linear-gradient(rgba(57, 53, 139, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 53, 139, 0.055) 1px, transparent 1px);
+        background-size: 56px 56px;
+        transition: transform 1.15s var(--pl-slide) 0.45s;
+      }
+
+      .preloader__panel--left {
+        left: 0;
+        background-position: right top;
+      }
+
+      .preloader__panel--right {
+        right: 0;
+      }
+
+      /* Aluminium interlock profile on the meeting edge of each panel */
+      .preloader__panel::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 9px;
+        background: var(--pl-metal);
+        opacity: 0;
+        transition: opacity 0.3s ease 0.3s;
+      }
+
+      .preloader__panel--left::after {
+        right: 0;
+        box-shadow:
+          inset -3px 0 0 #ed1c24,
+          10px 0 24px rgba(17, 24, 39, 0.22);
+      }
+
+      .preloader__panel--right::after {
+        left: 0;
+        box-shadow:
+          inset 3px 0 0 #39358b,
+          -10px 0 24px rgba(17, 24, 39, 0.22);
+      }
+
+      .preloader__content {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        gap: 1.75rem;
+        transition:
+          opacity 0.45s ease,
+          transform 0.6s var(--pl-ease);
+      }
+
+      /* Window frame that draws itself clockwise around the logo */
+      .preloader__frame {
+        position: relative;
+        padding: clamp(1.75rem, 5vw, 2.5rem) clamp(2rem, 7vw, 3.25rem);
+      }
+
+      .preloader__edge {
+        position: absolute;
+        background: var(--pl-metal);
+      }
+
+      .preloader__edge--top,
+      .preloader__edge--bottom {
+        left: 0;
+        right: 0;
+        height: 3px;
+        transform: scaleX(0);
+      }
+
+      .preloader__edge--left,
+      .preloader__edge--right {
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--pl-metal-v);
+        transform: scaleY(0);
+      }
+
+      .preloader__edge--top {
+        top: 0;
+        transform-origin: left;
+        animation: pl-draw-x 0.55s var(--pl-ease) 0.15s forwards;
+      }
+
+      .preloader__edge--right {
+        right: 0;
+        transform-origin: top;
+        animation: pl-draw-y 0.5s var(--pl-ease) 0.6s forwards;
+      }
+
+      .preloader__edge--bottom {
+        bottom: 0;
+        transform-origin: right;
+        animation: pl-draw-x 0.55s var(--pl-ease) 1s forwards;
+      }
+
+      .preloader__edge--left {
+        left: 0;
+        transform-origin: bottom;
+        animation: pl-draw-y 0.5s var(--pl-ease) 1.45s forwards;
+      }
+
+      /* Brand-coloured corner brackets appear once the frame is complete */
+      .preloader__corner {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        opacity: 0;
+        animation: pl-fade 0.5s ease 1.8s forwards;
+      }
+
+      .preloader__corner--tl {
+        top: -7px;
+        left: -7px;
+        border-top: 3px solid #ed1c24;
+        border-left: 3px solid #ed1c24;
+      }
+
+      .preloader__corner--br {
+        right: -7px;
+        bottom: -7px;
+        border-right: 3px solid #39358b;
+        border-bottom: 3px solid #39358b;
+      }
+
+      .preloader__glass {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .preloader__logo {
+        display: block;
+        width: clamp(140px, 40vw, 200px);
+        height: auto;
+        clip-path: inset(100% 0 0 0);
+        animation: pl-reveal 1.1s var(--pl-ease) 0.75s forwards;
+      }
+
+      /* Glass reflection that sweeps across the logo while loading */
+      .preloader__glass::after {
+        content: '';
+        position: absolute;
+        inset: -20% auto -20% 0;
+        width: 45%;
+        background: linear-gradient(
+          100deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.85) 50%,
+          transparent 100%
+        );
+        transform: translateX(-160%) skewX(-18deg);
+        animation: pl-shine 2.8s ease-in-out 2s infinite;
+      }
+
+      .preloader__tagline {
+        margin: 0;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: #6b7280;
+        opacity: 0;
+        animation: pl-tagline 1s var(--pl-ease) 2s forwards;
+      }
+
+      .preloader__tagline span {
+        color: #ed1c24;
+      }
+
+      @media (max-width: 359px) {
+        .preloader__tagline {
+          font-size: 0.625rem;
+          letter-spacing: 0.26em;
+        }
+      }
+
+      .preloader__sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+
+      /* Exit: content lifts away, then the panels slide apart */
+      #preloader.is-hidden {
+        visibility: hidden;
+      }
+
+      #preloader.is-hidden .preloader__content {
+        opacity: 0;
+        transform: translateY(-14px) scale(0.97);
+      }
+
+      #preloader.is-hidden .preloader__panel::after {
+        opacity: 1;
+      }
+
+      #preloader.is-hidden .preloader__panel--left {
+        transform: translateX(-101%);
+      }
+
+      #preloader.is-hidden .preloader__panel--right {
+        transform: translateX(101%);
+      }
+
+      /* Hold the hero entrance animations until the panels open */
+      html.is-loading .hero,
+      html.is-loading .hero * {
+        animation-play-state: paused !important;
+      }
+
+      @keyframes pl-draw-x {
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      @keyframes pl-draw-y {
+        to {
+          transform: scaleY(1);
+        }
+      }
+
+      @keyframes pl-fade {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes pl-reveal {
+        to {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      @keyframes pl-shine {
+        0% {
+          transform: translateX(-160%) skewX(-18deg);
+        }
+        45%,
+        100% {
+          transform: translateX(330%) skewX(-18deg);
+        }
+      }
+
+      @keyframes pl-tagline {
+        from {
+          opacity: 0;
+          letter-spacing: 0.6em;
+        }
+        to {
+          opacity: 1;
+          letter-spacing: 0.34em;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #preloader *,
+        #preloader *::after {
+          animation: none !important;
+        }
+
+        .preloader__edge {
+          transform: none !important;
+        }
+
+        .preloader__logo {
+          clip-path: none;
+        }
+
+        .preloader__corner,
+        .preloader__tagline {
+          opacity: 1;
+        }
+
+        .preloader__glass::after {
+          display: none;
+        }
+
+        #preloader {
+          transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+        }
+
+        #preloader.is-hidden {
+          opacity: 0;
+        }
+
+        #preloader.is-hidden .preloader__panel {
+          transform: none;
+        }
+      }
+    </style>
+    <noscript>
+      <style>
+        #preloader {
+          display: none;
+        }
+        html.is-loading,
+        html.is-loading body {
+          overflow: auto;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div id="preloader" role="status" aria-live="polite">
+      <div class="preloader__panel preloader__panel--left" aria-hidden="true"></div>
+      <div class="preloader__panel preloader__panel--right" aria-hidden="true"></div>
+
+      <div class="preloader__content">
+        <div class="preloader__frame">
+          <span class="preloader__edge preloader__edge--top" aria-hidden="true"></span>
+          <span class="preloader__edge preloader__edge--right" aria-hidden="true"></span>
+          <span class="preloader__edge preloader__edge--bottom" aria-hidden="true"></span>
+          <span class="preloader__edge preloader__edge--left" aria-hidden="true"></span>
+          <span class="preloader__corner preloader__corner--tl" aria-hidden="true"></span>
+          <span class="preloader__corner preloader__corner--br" aria-hidden="true"></span>
+          <div class="preloader__glass">
+            <img
+              class="preloader__logo"
+              src="/src/assets/umiya-logo.png"
+              alt="Umiya Enterprises"
+              width="200"
+              height="136"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+        <p class="preloader__tagline" aria-hidden="true">
+          Aluminium <span>·</span> Glass <span>·</span> Fabrication
+        </p>
+        <span class="preloader__sr">Loading…</span>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var MIN_VISIBLE = reduced ? 1200 : 3600;
+        var MAX_WAIT = 9000;
+        var EXIT_DURATION = reduced ? 500 : 1700;
+        var start = Date.now();
+        var finished = false;
+
+        function finish() {
+          if (finished) return;
+          finished = true;
+          var wait = Math.max(0, MIN_VISIBLE - (Date.now() - start));
+          setTimeout(function () {
+            var loader = document.getElementById('preloader');
+            if (!loader) return;
+            loader.classList.add('is-hidden');
+            setTimeout(function () {
+              document.documentElement.classList.remove('is-loading');
+            }, reduced ? 0 : 700);
+            setTimeout(function () {
+              loader.remove();
+            }, EXIT_DURATION);
+          }, wait);
+        }
+
+        if (document.readyState === 'complete') finish();
+        else window.addEventListener('load', finish);
+        setTimeout(finish, MAX_WAIT);
+      })();
+    </script>
+
+    <div id="root"></div>
+    <noscript>Please enable JavaScript to view the Umiya Enterprises website.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+.doors__layout {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.doors__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.doors__list {
+  grid-template-columns: 1fr;
+  gap: 0.8rem 1.5rem;
+}
+
+.doors__media {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1rem;
+  align-items: end;
+}
+
+.doors__img {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.doors__img img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.doors__img--side {
+  margin-bottom: 18%;
+}
+
+.doors__tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow);
+}
+
+.doors__tag span {
+  padding: 0.5rem 0.85rem;
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--white);
+}
+
+.doors__tag span:first-child {
+  color: var(--white);
+  background: var(--red-strong);
+}
+
+@media (min-width: 480px) {
+  .doors__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .doors__media {
+    max-width: 620px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .doors__layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .doors__media {
+    max-width: none;
+    gap: 1.25rem;
+  }
+}

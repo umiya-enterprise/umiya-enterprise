@@ -1,0 +1,132 @@
+.windows__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.windows__benefits {
+  align-self: end;
+  padding: 1.25rem;
+  background: var(--light);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+}
+
+.windows__benefits-title {
+  margin-bottom: 1rem;
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.windows__benefits ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.875rem 0.75rem;
+}
+
+.windows__benefits li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.windows__benefit-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--red-strong);
+  background: var(--white);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Mobile: swipeable row with a peek of the next card */
+.windows__grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%;
+  gap: 0.875rem;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.windows__grid::-webkit-scrollbar {
+  display: none;
+}
+
+.windows__grid > li {
+  scroll-snap-align: start;
+}
+
+.windows__grid .image-tile {
+  aspect-ratio: 4 / 5;
+}
+
+@media (max-width: 359px) {
+  .windows__benefits ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 640px) {
+  .windows__grid {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-inline: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .windows__grid .image-tile {
+    aspect-ratio: 4 / 3;
+  }
+
+  .windows__benefits {
+    padding: 2rem;
+  }
+
+  .windows__benefits ul {
+    gap: 0.875rem 1rem;
+  }
+
+  .windows__benefits li {
+    gap: 0.65rem;
+    font-size: 0.9375rem;
+  }
+
+  .windows__benefit-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .windows__head {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+  }
+
+  .windows__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .windows__grid .image-tile {
+    aspect-ratio: 5 / 4;
+  }
+}

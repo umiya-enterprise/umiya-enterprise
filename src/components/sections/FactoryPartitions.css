@@ -1,0 +1,133 @@
+.factory {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.74);
+  background: linear-gradient(160deg, #161b27 0%, var(--ink) 55%, #0c1019 100%);
+}
+
+/* Brushed-aluminium diagonal texture */
+.factory__texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    -55deg,
+    rgba(255, 255, 255, 0.025) 0 1px,
+    transparent 1px 22px
+  );
+  mask-image: radial-gradient(ellipse at 20% 30%, #000, transparent 70%);
+}
+
+.factory__layout {
+  position: relative;
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.factory__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.factory__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.factory__list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.factory__list span {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  color: var(--metal-400);
+  letter-spacing: 0.08em;
+}
+
+.factory__mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+  padding-bottom: 2rem;
+}
+
+.factory__tile--2,
+.factory__tile--4,
+.factory__tile--2.is-visible,
+.factory__tile--4.is-visible {
+  transform: translateY(2rem);
+}
+
+.factory__tile figure {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.factory__tile img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: saturate(0.85);
+  transition:
+    transform 0.9s var(--ease-out),
+    filter var(--t) var(--ease);
+}
+
+.factory__tile figure:hover img {
+  transform: scale(1.05);
+  filter: saturate(1);
+}
+
+.factory__tile figcaption {
+  position: absolute;
+  left: 0.625rem;
+  bottom: 0.625rem;
+  padding: 0.35rem 0.6rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--metal-gradient);
+  border-radius: var(--r-xs);
+}
+
+@media (min-width: 480px) {
+  .factory__list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .factory__mosaic {
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .factory__mosaic {
+    max-width: 620px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .factory__layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .factory__mosaic {
+    max-width: none;
+  }
+}

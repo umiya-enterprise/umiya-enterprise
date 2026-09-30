@@ -1,0 +1,142 @@
+.feature-card-reveal {
+  height: 100%;
+}
+
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition:
+    transform var(--t) var(--ease),
+    box-shadow var(--t) var(--ease),
+    border-color var(--t) var(--ease);
+}
+
+/* Accent line that draws in on hover — red into blue, like the logo */
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red) 0 35%, var(--blue) 35% 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: transparent;
+  box-shadow: var(--shadow);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--blue);
+  background: var(--blue-tint);
+  border-radius: var(--r-sm);
+  transition:
+    background-color var(--t) var(--ease),
+    color var(--t) var(--ease);
+}
+
+.feature-card:hover .feature-card__icon {
+  color: var(--white);
+  background: var(--blue);
+}
+
+.feature-card__index {
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  color: var(--metal-300);
+  letter-spacing: 0.06em;
+}
+
+.feature-card__title {
+  font-size: 1.0625rem;
+}
+
+.feature-card__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Compact horizontal variant (about highlights) */
+.feature-card--compact {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  align-items: start;
+  padding: 1.25rem;
+}
+
+.feature-card--compact .feature-card__head {
+  grid-row: span 2;
+  margin: 0;
+}
+
+.feature-card--compact .feature-card__icon {
+  width: 44px;
+  height: 44px;
+}
+
+.feature-card--compact .feature-card__title {
+  font-size: 1rem;
+  align-self: center;
+}
+
+.feature-card--compact .feature-card__text {
+  font-size: var(--fs-sm);
+}
+
+/* Dark variant */
+.feature-card--dark {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.feature-card--dark .feature-card__title {
+  color: var(--white);
+}
+
+.feature-card--dark .feature-card__text {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.feature-card--dark .feature-card__icon {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-card--dark:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.feature-card--dark:hover .feature-card__icon {
+  background: var(--red-strong);
+}

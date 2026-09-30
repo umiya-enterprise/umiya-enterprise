@@ -1,0 +1,74 @@
+.floating-actions {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: grid;
+  gap: 0.625rem;
+  justify-items: center;
+}
+
+.floating-actions__btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--white);
+  border-radius: 50%;
+  box-shadow: 0 10px 24px -8px rgba(17, 24, 39, 0.45);
+  transition:
+    transform var(--t) var(--ease-out),
+    opacity var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+.floating-actions__btn--whatsapp {
+  background: #1faa53;
+}
+
+.floating-actions__btn--whatsapp:hover {
+  background: #178c44;
+  transform: translateY(-2px);
+}
+
+.floating-actions__btn--top {
+  width: 44px;
+  height: 44px;
+  background: var(--blue);
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+}
+
+.floating-actions.is-visible .floating-actions__btn--top {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.floating-actions.is-visible .floating-actions__btn--top:hover {
+  background: var(--red-strong);
+  transform: translateY(-2px);
+}
+
+/* On smaller screens the WhatsApp shortcut waits until the hero is scrolled past */
+@media (max-width: 1023px) {
+  .floating-actions__btn--whatsapp {
+    opacity: 0;
+    transform: translateY(12px) scale(0.9);
+    pointer-events: none;
+  }
+
+  .floating-actions.is-visible .floating-actions__btn--whatsapp {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .floating-actions {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}

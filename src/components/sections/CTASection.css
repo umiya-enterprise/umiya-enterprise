@@ -1,0 +1,129 @@
+.cta {
+  position: relative;
+  background: linear-gradient(to bottom, var(--white) 0 50%, var(--light) 50% 100%);
+}
+
+.cta__panel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: 2rem;
+  padding: clamp(2.25rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4.5rem);
+  color: rgba(255, 255, 255, 0.8);
+  background: linear-gradient(120deg, var(--blue-800) 0%, var(--blue) 55%, var(--blue-600) 100%);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Slanted bars borrowed from the logo's "E" */
+.cta__bars {
+  position: absolute;
+  top: 0;
+  right: -8%;
+  bottom: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  width: 58%;
+  opacity: 0.9;
+}
+
+.cta__bars span {
+  display: block;
+  height: 26%;
+  background: rgba(255, 255, 255, 0.06);
+  transform: skewX(-38deg);
+}
+
+.cta__bars span:nth-child(2) {
+  margin-left: 18%;
+  background: var(--red);
+  opacity: 0.9;
+}
+
+.cta__bars span:nth-child(3) {
+  margin-left: 8%;
+}
+
+.cta__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 40rem;
+}
+
+.cta__title {
+  font-size: clamp(1.875rem, 1.3rem + 2.6vw, 3.25rem);
+  color: var(--white);
+  letter-spacing: -0.03em;
+}
+
+.cta__text {
+  font-size: var(--fs-lg);
+  line-height: 1.7;
+}
+
+.cta__content .btn-row {
+  margin-top: 0.75rem;
+}
+
+.cta__call {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  justify-self: start;
+  padding: 0.75rem 1.1rem 0.75rem 0.75rem;
+  font-weight: 800;
+  color: var(--white);
+  background: rgba(10, 10, 30, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--r);
+  backdrop-filter: blur(8px);
+  transition: background-color var(--t) var(--ease);
+}
+
+.cta__call:hover {
+  background: rgba(10, 10, 30, 0.55);
+}
+
+.cta__call-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--blue);
+  background: var(--white);
+  border-radius: var(--r-sm);
+}
+
+.cta__call-label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 479px) {
+  .cta__content .btn {
+    width: 100%;
+  }
+
+  .cta__bars {
+    width: 90%;
+    right: -40%;
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta__panel {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}

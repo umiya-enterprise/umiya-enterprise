@@ -1,0 +1,71 @@
+:root {
+  /* Brand — taken from the Umiya Enterprises logo */
+  --red: #ed1c24;
+  --red-strong: #d3141b; /* brand red tuned for AA contrast behind white text */
+  --red-dark: #b3111a;
+  --red-tint: #fdeced;
+
+  --blue: #39358b;
+  --blue-600: #312d7c;
+  --blue-700: #2a2769;
+  --blue-800: #1f1c52;
+  --blue-900: #15133a;
+  --blue-tint: #eeedf8;
+
+  --ink: #111827;
+  --ink-soft: #374151;
+  --muted: #5b6373;
+  --line: #e3e5ea;
+  --line-strong: #cfd3da;
+  --light: #f3f4f6;
+  --white: #ffffff;
+  --night: #0a0a12;
+
+  /* Aluminium / metallic accents */
+  --metal-100: #f1f2f4;
+  --metal-200: #dde0e5;
+  --metal-300: #c5cad1;
+  --metal-400: #9aa1ac;
+  --metal-gradient: linear-gradient(135deg, #f7f8fa 0%, #d9dde2 38%, #f2f3f5 55%, #c3c8cf 100%);
+  --metal-edge: linear-gradient(90deg, #c5cad1, #f4f5f7 40%, #aeb4bd 100%);
+
+  /* Typography */
+  --font: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --fs-h3: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --fs-h2: clamp(1.75rem, 1.2rem + 2.2vw, 2.875rem);
+  --fs-h1: clamp(2.125rem, 1.25rem + 4.2vw, 4.5rem);
+
+  /* Layout */
+  --container: 1240px;
+  --gutter: clamp(1.125rem, 4vw, 2rem);
+  --section-y: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --header-h: 72px;
+
+  /* Shape & depth */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r: 10px;
+  --r-lg: 14px;
+  --shadow-xs: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --shadow-sm: 0 2px 8px rgba(17, 24, 39, 0.06), 0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow: 0 12px 32px -12px rgba(21, 19, 58, 0.18), 0 2px 6px rgba(17, 24, 39, 0.05);
+  --shadow-lg: 0 28px 60px -24px rgba(21, 19, 58, 0.35);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 0.2s;
+  --t: 0.35s;
+  --t-slow: 0.8s;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 80px;
+  }
+}

@@ -1,0 +1,134 @@
+.residential__head {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.residential__layout {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.residential__media {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+
+.residential__img {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.residential__img:first-child {
+  grid-column: 1 / -1;
+}
+
+.residential__img img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out);
+}
+
+.residential__img:hover img {
+  transform: scale(1.04);
+}
+
+.residential__badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--blue);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.residential__badge svg {
+  color: var(--red-strong);
+}
+
+.residential__panel {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.residential__list {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+.residential__list > li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 0.75rem;
+  padding-block: 0.95rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.residential__list > li:first-child {
+  padding-top: 0.25rem;
+}
+
+.residential__num {
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+.residential__list h3 {
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.residential__list p {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.residential__actions {
+  margin-top: 1.5rem;
+}
+
+.residential__actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .residential__media {
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .residential__head {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 4rem;
+  }
+
+  .residential__layout {
+    grid-template-columns: 1.35fr 1fr;
+  }
+
+  .residential__panel {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+  }
+}
