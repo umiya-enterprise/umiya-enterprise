@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
 
   return {
+    base: process.env.GITHUB_ACTIONS === 'true' ? '/umiya-enterprise/' : '/',
     plugins: [react(), enquiryApi()],
     server: {
       // A leading dot allows every subdomain, so new ngrok tunnel URLs keep working
