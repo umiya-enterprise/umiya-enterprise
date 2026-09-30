@@ -17,8 +17,8 @@ export const business = {
   contacts,
   phone: contacts[0],
   whatsapp: {
-    display: contacts[0].display,
-    href: 'https://wa.me/918154013534?text=Hello%20Umiya%20Enterprises%2C%20I%20would%20like%20a%20quote.',
+    display: contacts[1].display,
+    href: 'https://wa.me/918140181220?text=Hello%20Umiya%20Enterprises%2C%20I%20would%20like%20a%20quote.',
   },
   email: {
     display: 'umiyaenterprisealu@gmail.com',
