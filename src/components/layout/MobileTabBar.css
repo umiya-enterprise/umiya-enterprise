@@ -1,0 +1,101 @@
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 95;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding: 0 max(0.25rem, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(0.25rem, env(safe-area-inset-left));
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -8px 24px -12px rgba(21, 19, 58, 0.18);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .tabbar {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: saturate(1.6) blur(14px);
+  }
+}
+
+.tabbar__item,
+.tabbar__call {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  height: var(--tabbar-h);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabbar__item {
+  position: relative;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.tabbar__item svg {
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.tabbar__item:active svg {
+  transform: scale(0.88);
+}
+
+.tabbar__item.is-active {
+  color: var(--blue);
+}
+
+/* Small red-into-blue marker above the active tab, echoing the logo */
+.tabbar__item.is-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 26px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red) 0 40%, var(--blue) 40% 100%);
+  border-radius: 0 0 3px 3px;
+  transform: translateX(-50%);
+}
+
+.tabbar__item--wa svg {
+  color: #1faa53;
+}
+
+.tabbar__call {
+  justify-content: flex-end;
+  padding-bottom: 0.55rem;
+  color: var(--red-strong);
+}
+
+.tabbar__call-btn {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-top: -22px;
+  color: var(--white);
+  background: var(--red-strong);
+  border: 4px solid var(--white);
+  border-radius: 50%;
+  box-shadow: 0 10px 20px -8px rgba(211, 20, 27, 0.7);
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.tabbar__call:active .tabbar__call-btn {
+  transform: scale(0.92);
+}
+
+@media (min-width: 1024px) {
+  .tabbar {
+    display: none;
+  }
+}

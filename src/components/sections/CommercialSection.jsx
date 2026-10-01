@@ -14,16 +14,16 @@ export default function CommercialSection() {
             id="commercial-title"
             eyebrow="Commercial Solutions"
             title="Aluminium & Glass for Business Spaces"
-            text="Businesses need spaces that look professional and work hard every day. We deliver windows, doors, partitions, shopfronts and facades for commercial projects of different sizes."
+            text="Windows, doors, partitions, shopfronts and facades for business spaces that need to look professional every day."
           />
         </div>
 
-        <ul className="commercial__grid">
+        <ul className="commercial__grid rail">
           {commercialUseCases.map(({ title, text, icon: Icon, image }, i) => (
             <Reveal as="li" key={title} delay={(i % 3) * 0.07}>
               <article className="use-case">
                 <div className="use-case__media">
-                  <SmartImage image={image} ratio={16 / 10} maxWidth={720} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 120px" />
+                  <SmartImage image={image} ratio={16 / 10} maxWidth={720} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 75vw" />
                 </div>
                 <div className="use-case__body">
                   <span className="use-case__icon">

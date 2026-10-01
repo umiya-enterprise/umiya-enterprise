@@ -163,6 +163,74 @@
   transform: translate(2px, -2px);
 }
 
+/* Phones: two-column app-style category tiles */
+@media (max-width: 559.98px) {
+  .services__head {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .services__intro .btn {
+    display: none;
+  }
+
+  /* Two rows that swipe sideways */
+  .services__grid {
+    grid-template-rows: repeat(2, auto);
+    grid-auto-flow: column;
+    grid-auto-columns: 44%;
+    gap: 0.75rem;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0.25rem var(--gutter) 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .services__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .services__grid > li {
+    scroll-snap-align: start;
+  }
+
+  .service-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .service-card__media img {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Column-first flow would number them 01, 03, 05… */
+  .service-card__num {
+    display: none;
+  }
+
+  .service-card__body {
+    gap: 0.25rem;
+    padding: 0.7rem 0.75rem 0.8rem;
+  }
+
+  .service-card__title {
+    font-size: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .service-card__text {
+    display: none;
+  }
+
+  .service-card__link {
+    padding-top: 0.2rem;
+    font-size: 0.75rem;
+  }
+}
+
 @media (min-width: 560px) {
   .services__grid {
     grid-template-columns: repeat(2, 1fr);

@@ -1,6 +1,6 @@
 .doors__layout {
   display: grid;
-  gap: clamp(3rem, 6vw, 5rem);
+  gap: clamp(2.5rem, 5vw, 4rem);
   align-items: center;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .doors__img--side {
-  margin-bottom: 18%;
+  margin-bottom: 14%;
 }
 
 .doors__tag {
@@ -64,6 +64,35 @@
 .doors__tag span:first-child {
   color: var(--white);
   background: var(--red-strong);
+}
+
+@media (max-width: 767.98px) {
+  .doors__content {
+    gap: 1.25rem;
+  }
+
+  .doors__list {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 0.75rem;
+  }
+
+  .doors__list li {
+    font-size: 0.875rem;
+    line-height: 1.35;
+  }
+
+  .doors__list svg {
+    margin-top: 0.05rem;
+  }
+
+  .doors__content .btn-row .btn {
+    flex: 1 1 auto;
+  }
+
+  .doors__tag span {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.6875rem;
+  }
 }
 
 @media (min-width: 480px) {

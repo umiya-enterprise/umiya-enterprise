@@ -139,6 +139,42 @@
   margin-top: 0.5rem;
 }
 
+@media (max-width: 767.98px) {
+  .commercial__head {
+    margin-bottom: 1.5rem;
+  }
+
+  .commercial__grid {
+    --rail-w: 72%;
+  }
+
+  .use-case {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .use-case__media img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .use-case__body {
+    padding: 1rem;
+  }
+
+  .commercial__cta {
+    min-height: 0;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .commercial__cta h3 {
+    font-size: 1.125rem;
+  }
+
+  .commercial__cta .btn {
+    padding-inline: 1.1rem;
+  }
+}
+
 @media (min-width: 640px) {
   .commercial__grid {
     grid-template-columns: repeat(2, 1fr);
