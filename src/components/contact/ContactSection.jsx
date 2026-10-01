@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CalendarCheck, Clock, Mail, MapPin, Navigation, Phone } from 'lucide-react';
+import { CalendarCheck, Clock, ExternalLink, Mail, MapPin, Navigation, Phone } from 'lucide-react';
 import { business } from '../../data/site';
 import { scrollToId } from '../../utils/scroll';
 import { WhatsAppIcon } from '../ui/BrandIcons';
@@ -11,7 +11,14 @@ import './ContactSection.css';
 
 const details = [
   ...business.contacts.map((contact) => ({ icon: Phone, label: contact.name, value: contact.display, href: contact.href })),
-  { icon: WhatsAppIcon, label: 'WhatsApp', value: business.whatsapp.display, href: business.whatsapp.href, external: true },
+  {
+    icon: WhatsAppIcon,
+    label: 'WhatsApp',
+    value: business.whatsapp.display,
+    href: business.whatsapp.href,
+    external: true,
+    modifier: 'wide',
+  },
   {
     icon: Mail,
     label: 'Email',
@@ -22,8 +29,9 @@ const details = [
       </>
     ),
     href: business.email.href,
+    modifier: 'wide',
   },
-  { icon: MapPin, label: 'Address', value: business.address, href: business.mapsHref, external: true },
+  { icon: MapPin, label: 'Address', value: business.address, href: business.mapsHref, external: true, modifier: 'address' },
 ];
 
 export default function ContactSection() {
@@ -41,7 +49,7 @@ export default function ContactSection() {
           id="contact-title"
           eyebrow="Contact Us"
           title="Let's Talk About Your Project"
-          text="Call, WhatsApp or send us your requirement. We'll help you choose the right aluminium and glass solution for your space."
+          text="Call, WhatsApp or send your requirement — we'll help you choose the right solution for your space."
         />
 
         <div className="contact__layout">
@@ -52,8 +60,8 @@ export default function ContactSection() {
             </div>
 
             <ul className="contact__details">
-              {details.map(({ icon: Icon, label, value, href, external }) => (
-                <li key={label}>
+              {details.map(({ icon: Icon, label, value, href, external, modifier }) => (
+                <li key={label} className={modifier ? `contact__detail--${modifier}` : undefined}>
                   <a href={href} {...(external && { target: '_blank', rel: 'noopener noreferrer' })}>
                     <span className="contact__icon">
                       <Icon size={18} aria-hidden="true" />
@@ -97,25 +105,35 @@ export default function ContactSection() {
         </div>
 
         <Reveal className="contact__map">
-          <iframe
-            className="contact__map-frame"
-            src={business.mapEmbed}
-            title={`${business.name} location on Google Maps`}
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
           <div className="contact__map-card">
-            <span className="contact__map-icon">
-              <MapPin size={20} aria-hidden="true" />
-            </span>
-            <div className="contact__map-text">
-              <p className="contact__map-label">Visit Our Shop</p>
-              <p>{business.address}</p>
+            <div className="contact__map-head">
+              <span className="contact__map-icon">
+                <MapPin size={20} aria-hidden="true" />
+              </span>
+              <div>
+                <p className="contact__map-label">Visit Our Shop</p>
+                <p className="contact__map-title">{business.name}</p>
+              </div>
             </div>
-            <Button href={business.mapsHref} icon={Navigation} className="contact__map-btn">
-              Get Directions
-            </Button>
+            <p className="contact__map-address">{business.address}</p>
+            <div className="contact__map-actions">
+              <Button href={business.directionsHref} icon={Navigation} block>
+                Get Directions
+              </Button>
+              <Button href={business.mapsHref} variant="outline" icon={ExternalLink} block>
+                Open in Google Maps
+              </Button>
+            </div>
+          </div>
+          <div className="contact__map-view">
+            <iframe
+              className="contact__map-frame"
+              src={business.mapEmbed}
+              title={`${business.name} location on Google Maps`}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
           </div>
         </Reveal>
       </div>

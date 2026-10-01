@@ -1,13 +1,13 @@
 .about__layout {
   display: grid;
-  gap: clamp(3rem, 6vw, 5.5rem);
+  gap: clamp(2.5rem, 5vw, 4rem);
   align-items: center;
 }
 
 /* ----- Media composition ----- */
 .about__media {
   position: relative;
-  padding: 0 12% 12% 0;
+  padding: 0 10% 10% 0;
 }
 
 .about__img-main {
@@ -135,7 +135,71 @@
 .about__highlights {
   display: grid;
   gap: 1rem;
-  margin-top: clamp(3.5rem, 6vw, 5rem);
+  margin-top: clamp(3rem, 5vw, 4rem);
+}
+
+@media (max-width: 767.98px) {
+  .about__media {
+    padding: 0 8% 8% 0;
+  }
+
+  .about__img-main img {
+    aspect-ratio: 5 / 4;
+  }
+
+  .about__img-detail {
+    width: 38%;
+    padding: 4px;
+  }
+
+  .about__frame {
+    display: none;
+  }
+
+  .about__badge {
+    top: auto;
+    bottom: 14%;
+    left: 0.75rem;
+    max-width: 11.5rem;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .about__badge strong {
+    font-size: 0.875rem;
+  }
+
+  .about__content {
+    gap: 1.25rem;
+  }
+
+  .about__chips li {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8125rem;
+  }
+
+  .about__strengths {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 0.75rem;
+    padding-top: 1.25rem;
+  }
+
+  .about__strengths li {
+    font-size: 0.875rem;
+    line-height: 1.35;
+  }
+
+  .about__strengths svg {
+    margin-top: 0.05rem;
+  }
+
+  .about__cta .btn {
+    width: 100%;
+  }
+
+  .about__highlights {
+    --rail-w: 72%;
+    margin-top: 2.5rem;
+  }
 }
 
 @media (min-width: 480px) {

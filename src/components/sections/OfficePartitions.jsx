@@ -26,11 +26,11 @@ export default function OfficePartitions() {
             id="office-title"
             eyebrow="Office Partitions"
             title="Office Aluminium & Glass Partitions"
-            text="Well-planned partitions make an office feel organised, open and professional. We create glass cabins, conference rooms and workstation divisions with neat aluminium framing that suits modern workplaces."
+            text="Glass cabins, conference rooms and workstation divisions with neat aluminium framing — organised, open and professional."
           />
         </div>
 
-        <ul className="office__bento">
+        <ul className="office__bento rail">
           {officePartitions.map((item, i) => (
             <Reveal as="li" key={item.title} className={`office__cell office__cell--${i + 1}`} variant="fade" delay={(i % 3) * 0.08}>
               <ImageTile

@@ -29,7 +29,7 @@ export default function FactoryPartitions() {
             tone="light"
             eyebrow="Factory & Industrial"
             title="Functional Partition Solutions for Industrial Spaces"
-            text="Factories need spaces that are organised, safe to work in and easy to supervise. We build aluminium and glass partitions, office cabins and work area divisions that fit around production floors and warehouses."
+            text="Partitions, office cabins and work-area divisions that keep production floors organised, safe and easy to supervise."
           />
           <Reveal as="ul" className="factory__list">
             {factoryItems.map((item, i) => (
@@ -46,7 +46,7 @@ export default function FactoryPartitions() {
           </Reveal>
         </div>
 
-        <ul className="factory__mosaic">
+        <ul className="factory__mosaic rail">
           {mosaic.map((item, i) => (
             <Reveal as="li" key={item.caption} variant="image" delay={i * 0.1} className={`factory__tile factory__tile--${i + 1}`}>
               <figure>
