@@ -1,63 +1,80 @@
+/*
+  The floating pill and the full-width scrolled bar are separate layers that cross-fade,
+  and the header shifts with transform, so scrolling past the threshold never animates layout.
+*/
 .site-header {
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
   padding-top: 12px;
+  transition: transform var(--t) var(--ease);
+}
+
+.site-header::before,
+.site-header__bar::before {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  backdrop-filter: saturate(1.4) blur(10px);
   transition:
-    padding var(--t) var(--ease),
-    background-color var(--t) var(--ease),
-    box-shadow var(--t) var(--ease);
+    opacity var(--t) var(--ease),
+    visibility 0s linear var(--t);
+}
+
+/* Full-width bar: covers the viewport top once the header has shifted up 8px */
+.site-header::before {
+  inset: 0 0 auto;
+  height: calc(var(--header-h) + 8px);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow:
+    0 1px 0 var(--line),
+    0 8px 24px -16px rgba(17, 24, 39, 0.3);
+  opacity: 0;
+  visibility: hidden;
 }
 
 .site-header__inner {
+  position: relative;
   width: 100%;
   max-width: calc(var(--container) + var(--gutter) * 2);
   margin-inline: auto;
   padding-inline: calc(var(--gutter) - 0.5rem);
-  transition: padding var(--t) var(--ease);
 }
 
 .site-header__bar {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   height: calc(var(--header-h) - 8px);
   padding-inline: 0.875rem 0.625rem;
+}
+
+/* Floating pill */
+.site-header__bar::before {
+  inset: 0;
+  z-index: -1;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--r-lg);
   box-shadow: 0 10px 30px -12px rgba(10, 10, 30, 0.35);
-  backdrop-filter: saturate(1.4) blur(10px);
-  transition:
-    height var(--t) var(--ease),
-    border-radius var(--t) var(--ease),
-    background-color var(--t) var(--ease),
-    box-shadow var(--t) var(--ease),
-    padding var(--t) var(--ease);
 }
 
 .site-header.is-scrolled {
-  padding-top: 0;
-  background: rgba(255, 255, 255, 0.97);
-  box-shadow:
-    0 1px 0 var(--line),
-    0 8px 24px -16px rgba(17, 24, 39, 0.3);
-  backdrop-filter: saturate(1.4) blur(10px);
+  transform: translateY(-8px);
 }
 
-.site-header.is-scrolled .site-header__inner {
-  padding-inline: var(--gutter);
+.site-header.is-scrolled::before {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--t) var(--ease);
 }
 
-.site-header.is-scrolled .site-header__bar {
-  height: var(--header-h);
-  padding-inline: 0;
-  background: transparent;
-  border-color: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  backdrop-filter: none;
+.site-header.is-scrolled .site-header__bar::before {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .site-header__brand {
@@ -70,7 +87,8 @@
 .site-header__logo {
   height: 42px;
   width: auto;
-  transition: height var(--t) var(--ease);
+  transform-origin: left center;
+  transition: transform var(--t) var(--ease);
 }
 
 /* ----- Desktop nav ----- */
@@ -221,7 +239,7 @@
   }
 
   .site-header.is-scrolled .site-header__logo {
-    height: 46px;
+    transform: scale(0.92);
   }
 }
 

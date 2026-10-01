@@ -29,38 +29,224 @@
       #preloader {
         --pl-ease: cubic-bezier(0.22, 1, 0.36, 1);
         --pl-slide: cubic-bezier(0.76, 0, 0.24, 1);
-        --pl-metal: linear-gradient(90deg, #9ca3af, #e5e7eb 45%, #9ca3af);
-        --pl-metal-v: linear-gradient(180deg, #9ca3af, #e5e7eb 45%, #9ca3af);
+        --pl-metal: linear-gradient(90deg, #9aa1ac, #f1f2f4 45%, #9aa1ac);
+        --pl-metal-v: linear-gradient(180deg, #9aa1ac, #f1f2f4 45%, #9aa1ac);
         position: fixed;
         inset: 0;
         z-index: 9999;
         display: grid;
         place-items: center;
+        --pl-track: clamp(8px, 1.1vw, 14px);
         overflow: hidden;
         transition: visibility 0s linear 1.6s;
       }
 
-      /* Two sliding panels that part like a sliding door on exit */
+      /* Two aluminium-framed glass shutters that part like a sliding door on exit */
       .preloader__panel {
+        --pl-rail: clamp(12px, 1.8vw, 20px);
+        --pl-meet: clamp(20px, 2.8vw, 32px);
+        --pl-t: var(--pl-rail);
+        --pl-b: var(--pl-rail);
         position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 50.5%;
-        background-color: #f3f4f6;
-        background-image:
-          linear-gradient(rgba(57, 53, 139, 0.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(57, 53, 139, 0.055) 1px, transparent 1px);
-        background-size: 56px 56px;
-        transition: transform 1.15s var(--pl-slide) 0.45s;
+        top: var(--pl-track);
+        bottom: var(--pl-track);
+        width: calc(50% - var(--pl-track) + 1px);
+        background: #c9ced5;
       }
 
       .preloader__panel--left {
-        left: 0;
-        background-position: right top;
+        --pl-l: var(--pl-rail);
+        --pl-r: var(--pl-meet);
+        left: var(--pl-track);
       }
 
       .preloader__panel--right {
+        --pl-l: var(--pl-meet);
+        --pl-r: var(--pl-rail);
+        right: var(--pl-track);
+        box-shadow: -3px 0 10px rgba(17, 24, 39, 0.18);
+      }
+
+      /* Fixed outer window frame the sashes run in; it fades once they are open */
+      .preloader__outer {
+        --pl-t: var(--pl-track);
+        --pl-b: var(--pl-track);
+        --pl-l: var(--pl-track);
+        --pl-r: var(--pl-track);
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        filter: brightness(0.9) contrast(1.08);
+        transition: opacity 0.45s ease 1.1s;
+      }
+
+      .preloader__outer .preloader__profile--bottom::before {
+        display: none;
+      }
+
+      .preloader__outer::after {
+        content: '';
+        position: absolute;
+        inset: var(--pl-track);
+        box-shadow: inset 0 0 14px rgba(17, 24, 39, 0.28);
+      }
+
+      #preloader.is-hidden .preloader__outer {
+        opacity: 0;
+      }
+
+      /*
+        Extruded sash profile: four pieces cut at 45° so the corners show mitre joints.
+        --pl-dir points from the outer face of each piece towards the glass.
+      */
+      .preloader__profile {
+        position: absolute;
+        background:
+          repeating-linear-gradient(
+            var(--pl-dir),
+            rgba(255, 255, 255, 0.2) 0 1px,
+            transparent 1px 3px
+          ),
+          linear-gradient(
+            var(--pl-dir),
+            #9aa1ac 0%,
+            #f1f2f4 14%,
+            #dde0e5 40%,
+            #9aa1ac 43%,
+            #f1f2f4 47%,
+            #c5cad1 78%,
+            #9aa1ac 92%,
+            #7d8490 100%
+          );
+      }
+
+      .preloader__profile--top {
+        --pl-dir: 180deg;
+        top: 0;
+        left: 0;
         right: 0;
+        height: var(--pl-t);
+        clip-path: polygon(0 0, 100% 0, calc(100% - var(--pl-r)) 100%, var(--pl-l) 100%);
+      }
+
+      .preloader__profile--bottom {
+        --pl-dir: 0deg;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: var(--pl-b);
+        clip-path: polygon(var(--pl-l) 0, calc(100% - var(--pl-r)) 0, 100% 100%, 0 100%);
+      }
+
+      /* Drainage weep slots on the bottom rail */
+      .preloader__profile--bottom::before {
+        content: '';
+        position: absolute;
+        bottom: 34%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background:
+          linear-gradient(#3a404a, #5b626d) 18% 0 / 30px 100% no-repeat,
+          linear-gradient(#3a404a, #5b626d) 82% 0 / 30px 100% no-repeat;
+        border-radius: 2px;
+      }
+
+      .preloader__profile--left {
+        --pl-dir: 90deg;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--pl-l);
+        clip-path: polygon(0 0, 100% var(--pl-t), 100% calc(100% - var(--pl-b)), 0 100%);
+      }
+
+      .preloader__profile--right {
+        --pl-dir: 270deg;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: var(--pl-r);
+        clip-path: polygon(0 var(--pl-t), 100% 0, 100% 100%, 0 calc(100% - var(--pl-b)));
+      }
+
+      /* Navy-tinted toughened glass (matches the hero) held in a black rubber gasket */
+      .preloader__pane {
+        position: absolute;
+        top: var(--pl-t);
+        bottom: var(--pl-b);
+        left: var(--pl-l);
+        right: var(--pl-r);
+        overflow: hidden;
+        border: 2px solid #0c0b22;
+        background:
+          linear-gradient(
+            118deg,
+            transparent 22%,
+            rgba(255, 255, 255, 0.11) 27%,
+            transparent 34%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.06) 43%,
+            transparent 47%
+          ),
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 120px 120px,
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 120px 120px,
+          linear-gradient(180deg, rgba(57, 53, 139, 0.35), transparent 45%, rgba(12, 11, 34, 0.55) 100%),
+          linear-gradient(160deg, #23205c 0%, #1a1846 45%, #100f2c 100%);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+          inset 0 4px 14px rgba(5, 5, 20, 0.5);
+      }
+
+      .preloader__panel--right .preloader__pane {
+        background-position: 30% 0, 0 0, 0 0, 0 0, 0 0;
+      }
+
+      /* Soft light sweep across the glass while loading */
+      .preloader__pane::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          transparent 35%,
+          rgba(255, 255, 255, 0.08) 50%,
+          transparent 65%
+        );
+        transform: translateX(-100%);
+        animation: pl-pane-sheen 3.6s ease-in-out 0.3s infinite;
+      }
+
+      /* Etched safety-glass stamp in the outer bottom corner */
+      .preloader__pane::before {
+        content: 'Umiya Enterprises\A Toughened Safety Glass';
+        position: absolute;
+        bottom: clamp(10px, 2.2vh, 18px);
+        padding: 4px 6px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        font-family: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        white-space: pre;
+        color: rgba(255, 255, 255, 0.26);
+      }
+
+      .preloader__panel--left .preloader__pane::before {
+        left: clamp(10px, 2vw, 18px);
+      }
+
+      .preloader__panel--right .preloader__pane::before {
+        right: clamp(10px, 2vw, 18px);
+        text-align: right;
+      }
+
+      @media (max-width: 479px) {
+        .preloader__pane::before {
+          display: none;
+        }
       }
 
       /* Aluminium interlock profile on the meeting edge of each panel */
@@ -69,7 +255,7 @@
         position: absolute;
         top: 0;
         bottom: 0;
-        width: 9px;
+        width: 6px;
         background: var(--pl-metal);
         opacity: 0;
         transition: opacity 0.3s ease 0.3s;
@@ -78,25 +264,116 @@
       .preloader__panel--left::after {
         right: 0;
         box-shadow:
-          inset -3px 0 0 #ed1c24,
+          inset -2px 0 0 #ed1c24,
           10px 0 24px rgba(17, 24, 39, 0.22);
       }
 
       .preloader__panel--right::after {
         left: 0;
         box-shadow:
-          inset 3px 0 0 #39358b,
+          inset 2px 0 0 #39358b,
           -10px 0 24px rgba(17, 24, 39, 0.22);
       }
 
+      /* Pull handle mounted on the meeting stile */
+      .preloader__handle {
+        position: absolute;
+        top: 50%;
+        width: 14px;
+        height: clamp(112px, 14vh + 32px, 152px);
+        border-radius: 7px;
+        background:
+          radial-gradient(circle at 50% 7px, #5b626d 0 1.5px, #e5e7eb 2px 3px, transparent 3.5px),
+          radial-gradient(circle at 50% calc(100% - 7px), #5b626d 0 1.5px, #e5e7eb 2px 3px, transparent 3.5px),
+          linear-gradient(90deg, #c3c8cf, #eef0f2 50%, #b6bcc4);
+        box-shadow:
+          0 0 0 1px #9aa1ac,
+          1px 2px 4px rgba(17, 24, 39, 0.2);
+        transform: translateY(-50%);
+      }
+
+      .preloader__handle::before {
+        content: '';
+        position: absolute;
+        inset: 16px 3px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #858c97, #f4f5f7 45%, #959ca7);
+        box-shadow:
+          0 0 0 1px #747b86,
+          2px 4px 8px rgba(17, 24, 39, 0.3);
+      }
+
+      .preloader__panel--left .preloader__handle {
+        right: calc(var(--pl-meet) / 2 - 7px);
+      }
+
+      .preloader__panel--right .preloader__handle {
+        left: calc(var(--pl-meet) / 2 - 7px);
+      }
+
+      /* Frosted glass signage plate mounted on the shutters with chrome standoffs */
       .preloader__content {
         position: relative;
         display: grid;
         justify-items: center;
         gap: 1.75rem;
+        padding: clamp(2rem, 4.5vw, 2.5rem) clamp(2rem, 5vw, 2.75rem);
+        overflow: hidden;
+        border-radius: 14px;
+        background: linear-gradient(145deg, #ffffff, rgba(246, 247, 251, 0.96));
+        -webkit-backdrop-filter: blur(14px) saturate(1.2);
+        backdrop-filter: blur(14px) saturate(1.2);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.95),
+          0 0 0 1px rgba(255, 255, 255, 0.35),
+          0 0 0 6px rgba(255, 255, 255, 0.07),
+          0 0 0 7px rgba(255, 255, 255, 0.12),
+          0 36px 70px -24px rgba(5, 5, 20, 0.75),
+          0 10px 30px -12px rgba(10, 10, 30, 0.45);
+        animation: pl-plaque 0.8s var(--pl-ease) 0.05s backwards;
         transition:
           opacity 0.45s ease,
           transform 0.6s var(--pl-ease);
+      }
+
+      /* Hairline progress along the bottom edge of the plate, driven by the loader script */
+      .preloader__progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        background: #eeedf8;
+      }
+
+      .preloader__progress span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, #d3141b, #ed1c24);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .preloader__content::before {
+        --pl-bolt:
+          radial-gradient(circle 2.5px at 40% 36%, #ffffff, rgba(255, 255, 255, 0) 100%),
+          radial-gradient(
+            circle 7.5px at 50% 50%,
+            #f3f4f6 0,
+            #cfd4da 38%,
+            #8f96a0 72%,
+            #5f6670 86%,
+            rgba(17, 24, 39, 0.15) 94%,
+            transparent 100%
+          );
+        content: '';
+        position: absolute;
+        inset: 11px;
+        pointer-events: none;
+        background-image: var(--pl-bolt), var(--pl-bolt), var(--pl-bolt), var(--pl-bolt);
+        background-size: 15px 15px;
+        background-repeat: no-repeat;
+        background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%;
       }
 
       /* Window frame that draws itself clockwise around the logo */
@@ -114,7 +391,7 @@
       .preloader__edge--bottom {
         left: 0;
         right: 0;
-        height: 3px;
+        height: 2px;
         transform: scaleX(0);
       }
 
@@ -122,7 +399,7 @@
       .preloader__edge--right {
         top: 0;
         bottom: 0;
-        width: 3px;
+        width: 2px;
         background: var(--pl-metal-v);
         transform: scaleY(0);
       }
@@ -154,24 +431,24 @@
       /* Brand-coloured corner brackets appear once the frame is complete */
       .preloader__corner {
         position: absolute;
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         opacity: 0;
         animation: pl-fade 0.5s ease 1.8s forwards;
       }
 
       .preloader__corner--tl {
-        top: -7px;
-        left: -7px;
-        border-top: 3px solid #ed1c24;
-        border-left: 3px solid #ed1c24;
+        top: -6px;
+        left: -6px;
+        border-top: 2px solid #ed1c24;
+        border-left: 2px solid #ed1c24;
       }
 
       .preloader__corner--br {
-        right: -7px;
-        bottom: -7px;
-        border-right: 3px solid #39358b;
-        border-bottom: 3px solid #39358b;
+        right: -6px;
+        bottom: -6px;
+        border-right: 2px solid #39358b;
+        border-bottom: 2px solid #39358b;
       }
 
       .preloader__glass {
@@ -203,26 +480,49 @@
         animation: pl-shine 2.8s ease-in-out 2s infinite;
       }
 
+      /* Same treatment as the site's eyebrow labels, including the skewed red/blue mark */
       .preloader__tagline {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
         margin: 0;
-        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        font-family: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
         font-size: 0.6875rem;
-        font-weight: 700;
-        letter-spacing: 0.34em;
+        font-weight: 800;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: #6b7280;
+        color: #39358b;
         opacity: 0;
         animation: pl-tagline 1s var(--pl-ease) 2s forwards;
+      }
+
+      .preloader__tagline::before {
+        content: '';
+        flex-shrink: 0;
+        width: 39px;
+        height: 6px;
+        background: linear-gradient(90deg, #ed1c24 0 14px, transparent 14px 17px, #39358b 17px);
+        transform: skewX(-35deg);
       }
 
       .preloader__tagline span {
         color: #ed1c24;
       }
 
-      @media (max-width: 359px) {
+      @media (max-width: 419px) {
         .preloader__tagline {
           font-size: 0.625rem;
-          letter-spacing: 0.26em;
+          letter-spacing: 0.14em;
+        }
+
+        .preloader__tagline::before {
+          display: none;
+        }
+      }
+
+      @media (max-width: 359px) {
+        .preloader__tagline {
+          letter-spacing: 0.08em;
         }
       }
 
@@ -249,12 +549,169 @@
         opacity: 1;
       }
 
+      /* Each sash gives a small unlatching push towards the centre before gliding open */
       #preloader.is-hidden .preloader__panel--left {
-        transform: translateX(-101%);
+        transform: translateX(calc(-100% - var(--pl-track) - 4px));
+        animation: pl-open-left 1.3s 0.3s both;
       }
 
       #preloader.is-hidden .preloader__panel--right {
-        transform: translateX(101%);
+        transform: translateX(calc(100% + var(--pl-track) + 4px));
+        animation: pl-open-right 1.3s 0.3s both;
+      }
+
+      @keyframes pl-open-left {
+        0% {
+          transform: translateX(0);
+          animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+        }
+        14% {
+          transform: translateX(6px);
+          animation-timing-function: var(--pl-slide);
+        }
+        100% {
+          transform: translateX(calc(-100% - var(--pl-track) - 4px));
+        }
+      }
+
+      @keyframes pl-open-right {
+        0% {
+          transform: translateX(0);
+          animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+        }
+        14% {
+          transform: translateX(-6px);
+          animation-timing-function: var(--pl-slide);
+        }
+        100% {
+          transform: translateX(calc(100% + var(--pl-track) + 4px));
+        }
+      }
+
+      /* Phones: the sashes stack vertically and part top / bottom instead */
+      @media (max-width: 767px) {
+        .preloader__panel {
+          left: var(--pl-track);
+          right: var(--pl-track);
+          width: auto;
+          height: calc(50% - var(--pl-track) + 1px);
+        }
+
+        .preloader__panel--left {
+          --pl-l: var(--pl-rail);
+          --pl-r: var(--pl-rail);
+          --pl-b: var(--pl-meet);
+          top: var(--pl-track);
+          bottom: auto;
+        }
+
+        .preloader__panel--right {
+          --pl-l: var(--pl-rail);
+          --pl-r: var(--pl-rail);
+          --pl-t: var(--pl-meet);
+          top: auto;
+          bottom: var(--pl-track);
+          box-shadow: 0 -3px 10px rgba(17, 24, 39, 0.18);
+        }
+
+        .preloader__panel--left .preloader__profile--bottom::before {
+          display: none;
+        }
+
+        .preloader__panel--left .preloader__pane::before {
+          top: clamp(10px, 2.2vh, 18px);
+          bottom: auto;
+        }
+
+        .preloader__panel::after {
+          left: 0;
+          right: 0;
+          width: auto;
+          height: 6px;
+          background: var(--pl-metal-v);
+        }
+
+        .preloader__panel--left::after {
+          top: auto;
+          bottom: 0;
+          box-shadow:
+            inset 0 -2px 0 #ed1c24,
+            0 10px 24px rgba(17, 24, 39, 0.22);
+        }
+
+        .preloader__panel--right::after {
+          top: 0;
+          bottom: auto;
+          box-shadow:
+            inset 0 2px 0 #39358b,
+            0 -10px 24px rgba(17, 24, 39, 0.22);
+        }
+
+        .preloader__handle {
+          top: auto;
+          left: 50%;
+          right: auto;
+          width: clamp(112px, 32vw, 152px);
+          height: 14px;
+          background:
+            radial-gradient(circle at 7px 50%, #5b626d 0 1.5px, #e5e7eb 2px 3px, transparent 3.5px),
+            radial-gradient(circle at calc(100% - 7px) 50%, #5b626d 0 1.5px, #e5e7eb 2px 3px, transparent 3.5px),
+            linear-gradient(180deg, #c3c8cf, #eef0f2 50%, #b6bcc4);
+          transform: translateX(-50%);
+        }
+
+        .preloader__handle::before {
+          inset: 3px 16px;
+          background: linear-gradient(180deg, #858c97, #f4f5f7 45%, #959ca7);
+        }
+
+        .preloader__panel--left .preloader__handle {
+          right: auto;
+          bottom: calc(var(--pl-meet) / 2 - 7px);
+        }
+
+        .preloader__panel--right .preloader__handle {
+          left: 50%;
+          top: calc(var(--pl-meet) / 2 - 7px);
+        }
+
+        #preloader.is-hidden .preloader__panel--left {
+          transform: translateY(calc(-100% - var(--pl-track) - 4px));
+          animation-name: pl-open-up;
+        }
+
+        #preloader.is-hidden .preloader__panel--right {
+          transform: translateY(calc(100% + var(--pl-track) + 4px));
+          animation-name: pl-open-down;
+        }
+      }
+
+      @keyframes pl-open-up {
+        0% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+        }
+        14% {
+          transform: translateY(6px);
+          animation-timing-function: var(--pl-slide);
+        }
+        100% {
+          transform: translateY(calc(-100% - var(--pl-track) - 4px));
+        }
+      }
+
+      @keyframes pl-open-down {
+        0% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+        }
+        14% {
+          transform: translateY(-6px);
+          animation-timing-function: var(--pl-slide);
+        }
+        100% {
+          transform: translateY(calc(100% + var(--pl-track) + 4px));
+        }
       }
 
       /* Hold the hero entrance animations until the panels open */
@@ -297,14 +754,30 @@
         }
       }
 
+      @keyframes pl-plaque {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.97);
+        }
+      }
+
+      @keyframes pl-pane-sheen {
+        0% {
+          transform: translateX(-100%);
+        }
+        55%,
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
       @keyframes pl-tagline {
         from {
           opacity: 0;
-          letter-spacing: 0.6em;
+          letter-spacing: 0.45em;
         }
         to {
           opacity: 1;
-          letter-spacing: 0.34em;
         }
       }
 
@@ -327,7 +800,8 @@
           opacity: 1;
         }
 
-        .preloader__glass::after {
+        .preloader__glass::after,
+        .preloader__pane::after {
           display: none;
         }
 
@@ -358,8 +832,28 @@
   </head>
   <body>
     <div id="preloader" role="status" aria-live="polite">
-      <div class="preloader__panel preloader__panel--left" aria-hidden="true"></div>
-      <div class="preloader__panel preloader__panel--right" aria-hidden="true"></div>
+      <div class="preloader__panel preloader__panel--left" aria-hidden="true">
+        <span class="preloader__pane"></span>
+        <span class="preloader__profile preloader__profile--top"></span>
+        <span class="preloader__profile preloader__profile--bottom"></span>
+        <span class="preloader__profile preloader__profile--left"></span>
+        <span class="preloader__profile preloader__profile--right"></span>
+        <span class="preloader__handle"></span>
+      </div>
+      <div class="preloader__panel preloader__panel--right" aria-hidden="true">
+        <span class="preloader__pane"></span>
+        <span class="preloader__profile preloader__profile--top"></span>
+        <span class="preloader__profile preloader__profile--bottom"></span>
+        <span class="preloader__profile preloader__profile--left"></span>
+        <span class="preloader__profile preloader__profile--right"></span>
+        <span class="preloader__handle"></span>
+      </div>
+      <div class="preloader__outer" aria-hidden="true">
+        <span class="preloader__profile preloader__profile--top"></span>
+        <span class="preloader__profile preloader__profile--bottom"></span>
+        <span class="preloader__profile preloader__profile--left"></span>
+        <span class="preloader__profile preloader__profile--right"></span>
+      </div>
 
       <div class="preloader__content">
         <div class="preloader__frame">
@@ -384,16 +878,26 @@
           Aluminium <span>·</span> Glass <span>·</span> Fabrication
         </p>
         <span class="preloader__sr">Loading…</span>
+        <div class="preloader__progress" aria-hidden="true"><span></span></div>
       </div>
     </div>
     <script>
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var MIN_VISIBLE = reduced ? 1200 : 3600;
+        var MIN_VISIBLE = reduced ? 1200 : 3300;
         var MAX_WAIT = 9000;
         var EXIT_DURATION = reduced ? 500 : 1700;
+        var COMPLETE_DURATION = reduced ? 0 : 300;
         var start = Date.now();
         var finished = false;
+        var bar = document.querySelector('.preloader__progress span');
+
+        // Ease towards 90% while the page loads; the last 10% fills when loading actually finishes
+        if (bar && !reduced) {
+          void bar.offsetWidth;
+          bar.style.transition = 'transform 3s cubic-bezier(0.25, 0.8, 0.35, 1)';
+          bar.style.transform = 'scaleX(0.9)';
+        }
 
         function finish() {
           if (finished) return;
@@ -402,13 +906,19 @@
           setTimeout(function () {
             var loader = document.getElementById('preloader');
             if (!loader) return;
-            loader.classList.add('is-hidden');
+            if (bar) {
+              bar.style.transition = 'transform ' + COMPLETE_DURATION + 'ms ease-out';
+              bar.style.transform = 'scaleX(1)';
+            }
             setTimeout(function () {
-              document.documentElement.classList.remove('is-loading');
-            }, reduced ? 0 : 700);
-            setTimeout(function () {
-              loader.remove();
-            }, EXIT_DURATION);
+              loader.classList.add('is-hidden');
+              setTimeout(function () {
+                document.documentElement.classList.remove('is-loading');
+              }, reduced ? 0 : 700);
+              setTimeout(function () {
+                loader.remove();
+              }, EXIT_DURATION);
+            }, COMPLETE_DURATION);
           }, wait);
         }
 
