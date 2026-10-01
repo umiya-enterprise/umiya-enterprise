@@ -179,6 +179,39 @@
   transform: none;
 }
 
+.gallery__more {
+  display: none;
+  margin-top: 1rem;
+}
+
+/* Phones: a tidy preview (one wide tile + six squares) until "Show all" is tapped */
+@media (max-width: 767.98px) {
+  .gallery__head {
+    margin-bottom: 1.25rem;
+  }
+
+  .gallery__filters {
+    margin-bottom: 1rem;
+  }
+
+  .gallery__grid--preview .project-card:nth-child(n + 8) {
+    display: none;
+  }
+
+  .gallery__grid--preview .project-card {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .gallery__grid--preview .project-card:first-child {
+    grid-column: span 2;
+  }
+
+  .gallery__more {
+    display: inline-flex;
+  }
+}
+
 .gallery__footer {
   display: flex;
   flex-wrap: wrap;
@@ -192,6 +225,18 @@
 .gallery__footer p {
   font-weight: 700;
   color: var(--ink);
+}
+
+@media (max-width: 767.98px) {
+  .gallery__footer {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .gallery__footer .btn {
+    width: 100%;
+  }
 }
 
 @keyframes gallery-in {

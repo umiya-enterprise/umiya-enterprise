@@ -13,7 +13,7 @@ function ServiceCard({ service, index }) {
           image={image}
           ratio={4 / 3}
           maxWidth={720}
-          sizes="(min-width: 1280px) 300px, (min-width: 900px) 30vw, (min-width: 560px) 45vw, 120px"
+          sizes="(min-width: 1280px) 300px, (min-width: 900px) 30vw, 45vw"
         />
         <span className="service-card__num" aria-hidden="true">
           {number}

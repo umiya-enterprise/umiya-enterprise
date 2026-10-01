@@ -43,8 +43,9 @@
   /* Layout */
   --container: 1240px;
   --gutter: clamp(1.125rem, 4vw, 2rem);
-  --section-y: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --section-y: clamp(3.25rem, 2rem + 5vw, 6.5rem);
   --header-h: 72px;
+  --tabbar-h: 62px;
 
   /* Shape & depth */
   --r-xs: 4px;

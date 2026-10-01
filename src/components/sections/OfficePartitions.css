@@ -127,6 +127,55 @@
   position: relative;
 }
 
+@media (max-width: 767.98px) {
+  .office__head {
+    margin-bottom: 1.5rem;
+  }
+
+  .office__bento > li {
+    align-self: start;
+  }
+
+  .office__bento .office__cell .image-tile {
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .office__bento .office__cell .image-tile__text {
+    display: block;
+  }
+
+  .office__bento .office__cell .image-tile__caption {
+    padding: 1rem;
+  }
+
+  .office__bento .office__cell .image-tile__title {
+    font-size: 1rem;
+  }
+
+  .office__bento .office__cell--cta {
+    align-self: stretch;
+  }
+
+  .office__plan {
+    justify-content: flex-end;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .office__plan p,
+  .office__plan-list {
+    display: none;
+  }
+
+  .office__plan-title {
+    font-size: 1.25rem;
+  }
+
+  .office__plan .btn {
+    padding-inline: 1.1rem;
+  }
+}
+
 @media (min-width: 640px) {
   .office__bento {
     gap: 1.25rem;

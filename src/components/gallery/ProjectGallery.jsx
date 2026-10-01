@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { projectCategories, projects } from '../../data/projects';
 import Button from '../ui/Button';
 import Reveal from '../ui/Reveal';
@@ -8,6 +9,9 @@ import Lightbox from './Lightbox';
 import ProjectCard from './ProjectCard';
 import './ProjectGallery.css';
 
+// Phones show this many cards until "Show all" is tapped (kept in sync with ProjectGallery.css)
+const MOBILE_PREVIEW = 7;
+
 const counts = Object.fromEntries(
   projectCategories.map(({ id }) => [id, id === 'all' ? projects.length : projects.filter((p) => p.categories.includes(id)).length]),
 );
@@ -15,12 +19,14 @@ const counts = Object.fromEntries(
 export default function ProjectGallery() {
   const [active, setActive] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [expanded, setExpanded] = useState(false);
 
   const visible = useMemo(
     () => (active === 'all' ? projects : projects.filter((p) => p.categories.includes(active))),
     [active],
   );
 
+  const preview = !expanded && visible.length > MOBILE_PREVIEW;
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const activeLabel = projectCategories.find((c) => c.id === active)?.label;
 
@@ -32,7 +38,7 @@ export default function ProjectGallery() {
             id="projects-title"
             eyebrow="Our Work"
             title="Projects Gallery"
-            text="A look at the kind of aluminium and glass work we deliver — windows, sliding doors, office and factory partitions, glass work, shopfronts and facades."
+            text="Windows, sliding doors, partitions, glass work, shopfronts and facades. Tap any photo to view it full screen."
           />
         </div>
 
@@ -44,11 +50,18 @@ export default function ProjectGallery() {
           Showing {visible.length} {activeLabel === 'All' ? '' : activeLabel} projects
         </p>
 
-        <ul className="gallery__grid" key={active}>
+        <ul className={`gallery__grid${preview ? ' gallery__grid--preview' : ''}`} key={active}>
           {visible.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} onOpen={setLightboxIndex} />
           ))}
         </ul>
+
+        {preview && (
+          <button type="button" className="btn btn--outline btn--block gallery__more" onClick={() => setExpanded(true)}>
+            <span>Show all {visible.length} projects</span>
+            <ChevronDown size={18} aria-hidden="true" />
+          </button>
+        )}
 
         <Reveal className="gallery__footer">
           <p>Have a similar requirement in mind?</p>

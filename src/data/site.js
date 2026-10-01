@@ -29,6 +29,8 @@ export const business = {
   address,
   // Google Maps place: Sudarshan Saket, Chandkheda
   mapsHref: 'https://maps.google.com/?cid=8579182759461758245',
+  directionsHref:
+    'https://www.google.com/maps/dir/?api=1&destination=Sudarshan%20Saket%2C%20Ganesh%20Parisar%20Road%2C%20Chandkheda%2C%20Ahmedabad%2C%20Gujarat%20382470',
   mapEmbed:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.701965409295!2d72.55375789678955!3d23.108003500000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e839b01ed5e9d%3A0x770f6143e8dfa525!2sSudarshan%20Saket!5e0!3m2!1sen!2sin!4v1790675189094!5m2!1sen!2sin',
   hours: [

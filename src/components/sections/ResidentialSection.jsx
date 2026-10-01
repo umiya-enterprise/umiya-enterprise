@@ -14,8 +14,7 @@ export default function ResidentialSection() {
         <div className="residential__head">
           <SectionHeading id="residential-title" eyebrow="Residential Solutions" title="Designed for Modern Homes" />
           <Reveal as="p" className="lead residential__intro">
-            Apartments, bungalows, villas and row houses — we help homeowners and builders create brighter, better
-            ventilated and easy-to-maintain homes with aluminium and glass made to measure.
+            Brighter, better-ventilated, easy-to-maintain homes — for apartments, bungalows, villas and row houses.
           </Reveal>
         </div>
 
