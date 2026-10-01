@@ -77,9 +77,45 @@
   aspect-ratio: 4 / 5;
 }
 
-@media (max-width: 359px) {
+@media (max-width: 639.98px) {
+  .windows__head {
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .windows__benefits {
+    padding: 1rem;
+  }
+
+  .windows__benefits-title {
+    margin-bottom: 0.75rem;
+  }
+
   .windows__benefits ul {
-    grid-template-columns: 1fr;
+    gap: 0.6rem 0.5rem;
+  }
+
+  .windows__benefits li {
+    font-size: 0.8125rem;
+  }
+
+  .windows__benefit-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .windows__benefit-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .windows__grid {
+    grid-auto-columns: 72%;
+    gap: 0.75rem;
+  }
+
+  .windows__grid .image-tile {
+    aspect-ratio: 1;
   }
 }
 

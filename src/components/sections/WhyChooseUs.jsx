@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
             id="why-title"
             eyebrow="Why Choose Us"
             title="Why Choose Umiya Enterprises?"
-            text="Good aluminium work is about the details — accurate measurement, the right materials, neat joints and careful installation. That is how we approach every job, big or small."
+            text="Accurate measurement, the right materials, neat joints and careful installation — on every job, big or small."
           />
           <Reveal className="why__panel">
             <p className="why__panel-title">Aluminium · Glass · Fabrication</p>
@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
           </Reveal>
         </div>
 
-        <ul className="why__grid">
+        <ul className="why__grid rail">
           {whyChooseUs.map((item, i) => (
             <li key={item.title}>
               <FeatureCard {...item} index={i + 1} delay={(i % 2) * 0.08} as="div" />

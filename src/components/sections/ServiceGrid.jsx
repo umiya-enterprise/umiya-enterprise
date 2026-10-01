@@ -18,8 +18,7 @@ export default function ServiceGrid() {
           />
           <Reveal className="services__intro">
             <p className="lead">
-              From a single window to a complete office fit-out, we design, fabricate and install aluminium and glass
-              systems for homes, offices, factories and commercial buildings.
+              From a single window to a full office fit-out — designed, fabricated and installed by one team.
             </p>
             <Button href="#contact" variant="outline" arrow>
               Request a Quote

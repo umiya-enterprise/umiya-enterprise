@@ -27,7 +27,7 @@ export default function GlassPartitions() {
             id="glass-title"
             eyebrow="Glass Partitions"
             title="Divide Spaces. Keep the Light."
-            text="Glass partitions separate rooms while keeping them bright and connected. They suit offices, clinics, showrooms and homes, and can be combined with frosting or film where privacy is needed."
+            text="Separate rooms while keeping them bright — for offices, clinics, showrooms and homes, with frosting where privacy is needed."
           />
           <ol className="glass__types">
             {glassPartitionTypes.map((type, i) => (

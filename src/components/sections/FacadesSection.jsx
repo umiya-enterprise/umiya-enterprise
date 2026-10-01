@@ -20,7 +20,7 @@ export default function FacadesSection() {
             tone="light"
             eyebrow="Glass & Aluminium Facades"
             title="Modern Facades. Strong First Impressions."
-            text="A building's exterior is the first thing people notice. Our aluminium and glass facade work gives offices, showrooms and commercial buildings a clean, contemporary face."
+            text="Aluminium and glass facades that give offices, showrooms and commercial buildings a clean, contemporary face."
           />
           <Reveal className="btn-row">
             <Button href="#contact" arrow>

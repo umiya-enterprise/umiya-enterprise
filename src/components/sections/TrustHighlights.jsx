@@ -20,7 +20,7 @@ export default function TrustHighlights() {
             </Reveal>
           </div>
 
-          <ul className="trust__list">
+          <ul className="trust__list rail">
             {trustHighlights.map((item, i) => (
               <Reveal as="li" key={item.title} className="trust__item" delay={i * 0.07}>
                 <CircleCheck size={24} strokeWidth={2} aria-hidden="true" />

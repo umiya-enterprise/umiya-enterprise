@@ -16,7 +16,7 @@ export default function DoorsSection() {
             id="doors-title"
             eyebrow="Aluminium Doors"
             title="Doors That Make a Clean Entrance"
-            text="Aluminium doors combine strength with slim, modern lines. We fabricate doors for homes, offices, shops and factories — with glass panels, solid infill or a mix of both, in finishes that match your windows."
+            text="Strong, slim-lined doors with glass or solid infill — for homes, offices, shops and factories, in finishes that match your windows."
           />
           <Reveal>
             <ul className="check-list doors__list">

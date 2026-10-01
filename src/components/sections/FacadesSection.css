@@ -72,6 +72,21 @@
   box-shadow: var(--shadow);
 }
 
+@media (max-width: 639.98px) {
+  .facades__intro {
+    gap: 1.25rem;
+  }
+
+  .facades__intro .btn-row .btn {
+    flex: 1 1 auto;
+  }
+
+  .facades__cards {
+    grid-auto-columns: 56%;
+    gap: 0.75rem;
+  }
+}
+
 @media (min-width: 640px) {
   .facades__cards {
     grid-auto-columns: 38%;

@@ -31,12 +31,8 @@ export default function AboutSection() {
             <SectionHeading id="about-title" eyebrow="About Umiya Enterprises" title="Built with Precision. Designed to Last." />
             <Reveal className="about__copy">
               <p className="lead">
-                Umiya Enterprises provides aluminium and glass fabrication solutions — from windows and sliding systems
-                to doors, partitions and facades — made to measure for each space we work on.
-              </p>
-              <p>
-                We combine quality materials with careful fabrication and professional installation, so every frame
-                fits well, operates smoothly and keeps its clean finish for years of everyday use.
+                Made-to-measure aluminium and glass work — windows, sliding systems, doors, partitions and facades —
+                fabricated with quality materials and installed by our own team.
               </p>
             </Reveal>
 
@@ -68,7 +64,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <ul className="about__highlights">
+        <ul className="about__highlights rail">
           {aboutHighlights.map((item, i) => (
             <li key={item.title}>
               <FeatureCard {...item} variant="compact" delay={i * 0.06} as="div" />

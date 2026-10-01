@@ -14,10 +14,10 @@ export default function ProcessTimeline() {
           align="center"
           eyebrow="How We Work"
           title="A Clear Process from Idea to Installation"
-          text="Five straightforward steps, so you always know what happens next."
+          text="Five simple steps, so you always know what happens next."
         />
 
-        <ol className="process__steps">
+        <ol className="process__steps rail">
           {processSteps.map(({ title, text, icon: Icon }, i) => (
             <Reveal as="li" key={title} className="process__step" delay={i * 0.1}>
               <div className="process__marker">

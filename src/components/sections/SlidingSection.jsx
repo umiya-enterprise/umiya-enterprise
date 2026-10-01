@@ -18,7 +18,7 @@ export default function SlidingSection() {
             tone="light"
             eyebrow="Sliding Windows & Doors"
             title="Seamless Sliding. Modern Living."
-            text="Sliding systems open up rooms without taking up space. We build large glass sliding doors, balcony sliders and office sliding systems that glide easily and look sharp when closed."
+            text="Space-saving sliders that glide easily — from large glass doors to balcony and office systems."
           />
           <Reveal className="sliding__cta">
             <Button href="#contact" arrow>
@@ -27,7 +27,7 @@ export default function SlidingSection() {
           </Reveal>
         </div>
 
-        <ul className="sliding__gallery">
+        <ul className="sliding__gallery rail">
           {slidingItems.map((item, i) => (
             <Reveal as="li" key={item.title} className={`sliding__item sliding__item--${i + 1}`} variant="fade" delay={i * 0.08}>
               <ImageTile

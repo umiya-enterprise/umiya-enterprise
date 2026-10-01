@@ -109,6 +109,45 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* Phones: swipeable step cards */
+@media (max-width: 767.98px) {
+  .process__steps {
+    --rail-w: 74%;
+    margin-top: 1.75rem;
+  }
+
+  .process__steps::before {
+    display: none;
+  }
+
+  .process__step,
+  .process__step:last-child {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--r);
+  }
+
+  .process__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .process__body {
+    padding-top: 0;
+  }
+
+  .process__body h3 {
+    font-size: 1.0625rem;
+  }
+
+  .process__body p {
+    font-size: 0.875rem;
+  }
+}
+
 /* Desktop: horizontal timeline */
 @media (min-width: 1024px) {
   .process__steps {
