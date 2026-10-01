@@ -13,7 +13,7 @@ export default function WindowsSection() {
             id="windows-title"
             eyebrow="Aluminium Windows"
             title="Aluminium Windows for Modern Spaces"
-            text="Slim, strong aluminium frames that bring in more light and suit every style — from apartments and bungalows to offices and showrooms. Every window is fabricated to your measured opening."
+            text="Slim, strong frames that let in more light — fabricated to your measured opening, for homes, offices and showrooms."
           />
 
           <Reveal className="windows__benefits" delay={0.1}>

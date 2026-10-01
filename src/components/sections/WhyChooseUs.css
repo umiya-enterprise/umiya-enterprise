@@ -57,6 +57,45 @@
   height: 100%;
 }
 
+@media (max-width: 767.98px) {
+  .why__layout {
+    gap: 1.5rem;
+  }
+
+  .why__intro {
+    gap: 1.25rem;
+  }
+
+  .why__panel {
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  }
+
+  .why__panel .btn {
+    width: 100%;
+  }
+
+  .why__grid {
+    --rail-w: 66%;
+  }
+
+  .why__grid .feature-card {
+    padding: 1.25rem;
+  }
+
+  .why__grid .feature-card__icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .why__grid .feature-card__title {
+    font-size: 1rem;
+  }
+
+  .why__grid .feature-card__text {
+    font-size: 0.875rem;
+  }
+}
+
 @media (min-width: 560px) {
   .why__grid {
     grid-template-columns: 1fr 1fr;
